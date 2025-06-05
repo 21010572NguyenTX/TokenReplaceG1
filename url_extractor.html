@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>URL Extractor và Replacer - Công cụ thay thế URL miễn phí</title>
-    <meta name="description" content="Công cụ miễn phí để trích xuất mã và thay thế URL. Hỗ trợ xử lý URL Google Play và các dịch vụ khác một cách nhanh chóng và dễ dàng.">
-    <meta name="keywords" content="URL extractor, URL replacer, Google Play URL, công cụ miễn phí, trích xuất URL">
-    <meta name="author" content="URL Extractor Tool">
+    <title>🍓 To ma to - Xử lí token 30TB AI Ultra</title>
+    <meta name="description" content="Công cụ miễn phí để xử lí token 30TB AI Ultra. Hỗ trợ chuyển đổi từ gói 2TB THÁNG sang 30TB AI Ultra một cách nhanh chóng và dễ dàng.">
+    <meta name="keywords" content="30TB AI Ultra, token processor, 2TB THÁNG, công cụ miễn phí, xử lí token">
+    <meta name="author" content="To ma to">
     <meta name="google-adsense-account" content="ca-pub-5528456876148332">
     
     <!-- Google AdSense -->
@@ -37,6 +37,30 @@
             color: #333;
             text-align: center;
             margin-bottom: 30px;
+        }
+        
+        .requirements {
+            background-color: #fff3cd;
+            border: 1px solid #ffc107;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .requirements h3 {
+            color: #856404;
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+        
+        .requirements ul {
+            color: #856404;
+            margin: 0;
+            padding-left: 20px;
+        }
+        
+        .requirements li {
+            margin-bottom: 8px;
         }
         
         .step {
@@ -187,14 +211,24 @@
                  data-full-width-responsive="true"></ins>
         </div>
         
-        <h1>🔗 URL TOKEN REPLACE</h1>
+        <h1>🍓 Xử lí token 30TB AI Ultra</h1>
         
-        <!-- Bước 1: Trích xuất mã -->
+        <!-- Điều kiện cần -->
+        <div class="requirements">
+            <h3>📋 Điều kiện cần thiết:</h3>
+            <ul>
+                <li>Tài khoản đã nhận gói <strong>students</strong> hoặc tương tự</li>
+                <li>Biết cách lấy <strong>token</strong> từ hệ thống</li>
+                <li>Có URL từ gói <strong>2TB THÁNG</strong> (không phải AI Pro)</li>
+            </ul>
+        </div>
+        
+        <!-- Bước 1: Trích xuất token -->
         <div class="step">
-            <h3>📋 Bước 1: Nhập URL để trích xuất mã</h3>
-            <label for="sourceUrl">Nhập URL nguồn:</label>
-            <textarea id="sourceUrl" placeholder="Dán URL nguồn vào đây..."></textarea>
-            <button onclick="extractCode()">🔍 Trích xuất mã</button>
+            <h3>📋 Bước 1: Nhập URL Token Gói 2TB THÁNG (Ko phải ai pro)</h3>
+            <label for="sourceUrl">Nhập URL nguồn từ gói 2TB THÁNG:</label>
+            <textarea id="sourceUrl" placeholder="Dán URL Token Gói 2TB THÁNG vào đây..."></textarea>
+            <button onclick="extractCode()">🔍 Trích xuất token</button>
             <div id="extractResult"></div>
         </div>
         
@@ -211,10 +245,10 @@
         
         <!-- Bước 2: Nhập URL 30TB AI Ultra -->
         <div class="step">
-            <h3>🔄 Bước 2: Nhập URL 30TB AI Ultra</h3>
-            <label for="targetUrl">Nhập URL 30TB AI Ultra:</label>
-            <textarea id="targetUrl" placeholder="Dán URL 30TB AI Ultra vào đây..."></textarea>
-            <button onclick="processUrls()" id="processBtn" disabled>⚡ Thực hiện thay thế</button>
+            <h3>🔄 Bước 2: Nhập URL TOKEN 30TB AI Ultra</h3>
+            <label for="targetUrl">Nhập URL TOKEN 30TB AI Ultra:</label>
+            <textarea id="targetUrl" placeholder="Dán URL TOKEN 30TB AI Ultra vào đây..."></textarea>
+            <button onclick="processUrls()" id="processBtn" disabled>⚡ Thực hiện xử lí</button>
             <div id="processResult"></div>
         </div>
         
@@ -231,7 +265,7 @@
         
         <!-- Footer -->
         <div class="footer">
-            <p>© 2024 URL Extractor Tool. Công cụ miễn phí để xử lý URL.</p>
+            <p>© 2024 To ma to 🍓. Công cụ miễn phí để xử lí token 30TB AI Ultra.</p>
             <p>Sử dụng một cách có trách nhiệm và tuân thủ các điều khoản dịch vụ.</p>
         </div>
     </div>
@@ -289,24 +323,24 @@
             const resultDiv = document.getElementById('extractResult');
             
             if (!sourceUrl) {
-                resultDiv.innerHTML = '<div class="result error">⚠️ Vui lòng nhập URL nguồn!</div>';
+                resultDiv.innerHTML = '<div class="result error">⚠️ Vui lòng nhập URL Token Gói 2TB THÁNG!</div>';
                 return;
             }
             
             try {
-                // Tìm đoạn mã trong URL
+                // Tìm đoạn token trong URL
                 const pattern = /%22([a-zA-Z0-9]+)%22%5D%5D/g;
                 const matches = [...sourceUrl.matchAll(pattern)];
                 
-                // Tìm match cuối cùng (thường là mã cần thiết)
+                // Tìm match cuối cùng (thường là token cần thiết)
                 if (matches.length > 0) {
                     extractedCode = matches[matches.length - 1][1];
                     
                     resultDiv.innerHTML = `
                         <div class="result">
-                            ✅ Đã trích xuất thành công!
+                            ✅ Đã trích xuất token thành công!
                             <div class="extracted-code">
-                                <strong>Mã được trích xuất:</strong> ${extractedCode}
+                                <strong>Token được trích xuất:</strong> ${extractedCode}
                             </div>
                         </div>
                     `;
@@ -314,7 +348,7 @@
                     // Enable nút xử lý
                     document.getElementById('processBtn').disabled = false;
                 } else {
-                    resultDiv.innerHTML = '<div class="result error">❌ Không tìm thấy mã trong URL! Vui lòng kiểm tra lại URL.</div>';
+                    resultDiv.innerHTML = '<div class="result error">❌ Không tìm thấy token trong URL! Vui lòng kiểm tra lại URL gói 2TB THÁNG.</div>';
                     extractedCode = '';
                     document.getElementById('processBtn').disabled = true;
                 }
@@ -331,11 +365,11 @@
             const resultDiv = document.getElementById('processResult');
             
             if (!targetUrl) {
-                resultDiv.innerHTML = '<div class="result error">⚠️ Vui lòng nhập URL 30TB AI Ultra!</div>';
+                resultDiv.innerHTML = '<div class="result error">⚠️ Vui lòng nhập URL TOKEN 30TB AI Ultra!</div>';
                 return;
             }
             
-            // Nếu chưa có mã được trích xuất và có URL nguồn, tự động trích xuất
+            // Nếu chưa có token được trích xuất và có URL nguồn, tự động trích xuất
             if (!extractedCode && sourceUrl) {
                 try {
                     const pattern = /%22([a-zA-Z0-9]+)%22%5D%5D/g;
@@ -346,9 +380,9 @@
                         // Cập nhật hiển thị kết quả trích xuất
                         document.getElementById('extractResult').innerHTML = `
                             <div class="result">
-                                ✅ Đã trích xuất thành công!
+                                ✅ Đã trích xuất token thành công!
                                 <div class="extracted-code">
-                                    <strong>Mã được trích xuất:</strong> ${extractedCode}
+                                    <strong>Token được trích xuất:</strong> ${extractedCode}
                                 </div>
                             </div>
                         `;
@@ -359,7 +393,7 @@
             }
             
             if (!extractedCode) {
-                resultDiv.innerHTML = '<div class="result error">⚠️ Vui lòng nhập URL nguồn hợp lệ để trích xuất mã!</div>';
+                resultDiv.innerHTML = '<div class="result error">⚠️ Vui lòng nhập URL Token Gói 2TB THÁNG hợp lệ để trích xuất token!</div>';
                 return;
             }
             
@@ -367,20 +401,20 @@
                 // Chuỗi cần thay thế
                 const searchString = '%3D%3D%22%5D%2Cnull%2Cnull%2Cnull%2Cnull%2Cnull%2Cnull%2Cnull%2Cnull%2C%5B%5B%5B%5B%22subs%3Acom';
                 
-                // Chuỗi thay thế (với mã đã trích xuất)
+                // Chuỗi thay thế (với token đã trích xuất)
                 const replaceString = `%3D%3D%22%5D%2Cnull%2Cnull%2Cnull%2C%5Bnull%2C0%2Cnull%2Cnull%2Cnull%2C%5B%22${extractedCode}%22%5D%5D%2Cnull%2Cnull%2Cnull%2Cnull%2C%5B%5B%5B%5B%22subs%3Acom`;
                 
-                // Thực hiện thay thế
+                // Thực hiện xử lí
                 const newUrl = targetUrl.replace(searchString, replaceString);
                 
                 if (newUrl === targetUrl) {
-                    resultDiv.innerHTML = '<div class="result error">⚠️ Không tìm thấy đoạn cần thay thế trong URL!</div>';
+                    resultDiv.innerHTML = '<div class="result error">⚠️ Không tìm thấy đoạn cần thay thế trong URL 30TB AI Ultra!</div>';
                 } else {
                     resultDiv.innerHTML = `
                         <div class="result">
-                            ✅ Đã thay thế thành công!
+                            ✅ Đã xử lí token thành công!
                             <div class="final-url">
-                                <strong>🔗 URL sau khi thay thế:</strong>
+                                <strong>🔗 URL 30TB AI Ultra sau khi xử lí:</strong>
                                 <br><br>
                                 <div style="word-break: break-all; font-family: monospace; background: white; padding: 10px; border-radius: 3px; border: 1px solid #ccc;">
                                     ${newUrl}
@@ -391,7 +425,7 @@
                     `;
                 }
             } catch (error) {
-                resultDiv.innerHTML = '<div class="result error">❌ Có lỗi xảy ra khi thay thế URL!</div>';
+                resultDiv.innerHTML = '<div class="result error">❌ Có lỗi xảy ra khi xử lí URL!</div>';
             }
         }
         
