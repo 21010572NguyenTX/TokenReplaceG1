@@ -140,7 +140,7 @@
             background-color: #218838;
         }
         
-        /* Ad container styles */
+        /* Ad container styles - Ẩn ban đầu */
         .ad-container {
             margin: 20px 0;
             text-align: center;
@@ -148,6 +148,12 @@
             background-color: #f8f9fa;
             border-radius: 5px;
             border: 1px solid #dee2e6;
+            display: none; /* Ẩn ban đầu */
+            min-height: 100px;
+        }
+        
+        .ad-container.loaded {
+            display: block; /* Hiển thị khi đã tải quảng cáo */
         }
         
         .ad-label {
@@ -171,7 +177,7 @@
 <body>
     <div class="container">
         <!-- Header Ad -->
-        <div class="ad-container">
+        <div class="ad-container" id="header-ad">
             <div class="ad-label">Quảng cáo</div>
             <ins class="adsbygoogle"
                  style="display:block"
@@ -193,7 +199,7 @@
         </div>
         
         <!-- Middle Ad -->
-        <div class="ad-container">
+        <div class="ad-container" id="middle-ad">
             <div class="ad-label">Quảng cáo</div>
             <ins class="adsbygoogle"
                  style="display:block"
@@ -213,7 +219,7 @@
         </div>
         
         <!-- Bottom Ad -->
-        <div class="ad-container">
+        <div class="ad-container" id="bottom-ad">
             <div class="ad-label">Quảng cáo</div>
             <ins class="adsbygoogle"
                  style="display:block"
@@ -233,11 +239,49 @@
     <script>
         let extractedCode = '';
         
+        // Function to check if ads are loaded and show containers
+        function checkAdLoad(adElement, containerId) {
+            // Kiểm tra sau 2 giây xem quảng cáo có được tải không
+            setTimeout(() => {
+                const container = document.getElementById(containerId);
+                const adIns = adElement;
+                
+                // Kiểm tra nếu quảng cáo có nội dung (được tải thành công)
+                if (adIns && (adIns.innerHTML.length > 0 || adIns.offsetHeight > 0)) {
+                    container.classList.add('loaded');
+                }
+                // Nếu không có quảng cáo, container sẽ tetap ẩn
+            }, 2000);
+        }
+        
         // Initialize ads after page load
         window.addEventListener('load', function() {
-            (adsbygoogle = window.adsbygoogle || []).push({});
-            (adsbygoogle = window.adsbygoogle || []).push({});
-            (adsbygoogle = window.adsbygoogle || []).push({});
+            try {
+                const ads = document.querySelectorAll('.adsbygoogle');
+                
+                // Khởi tạo từng quảng cáo
+                ads.forEach((ad, index) => {
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                    
+                    // Kiểm tra từng quảng cáo
+                    const containerIds = ['header-ad', 'middle-ad', 'bottom-ad'];
+                    if (containerIds[index]) {
+                        checkAdLoad(ad, containerIds[index]);
+                    }
+                });
+                
+                // Fallback: Nếu không có quảng cáo nào được tải sau 5 giây, 
+                // có thể hiển thị thông báo hoặc nội dung thay thế
+                setTimeout(() => {
+                    const visibleAds = document.querySelectorAll('.ad-container.loaded');
+                    if (visibleAds.length === 0) {
+                        console.log('Không có quảng cáo nào được tải. Giao diện sạch sẽ hơn!');
+                    }
+                }, 5000);
+                
+            } catch (error) {
+                console.log('AdSense chưa được tải hoặc chưa được phê duyệt');
+            }
         });
         
         function extractCode() {
