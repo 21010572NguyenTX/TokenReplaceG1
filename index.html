@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Extractor và Replacer - Công cụ thay thế URL miễn phí</title>
+    <meta name="description" content="Công cụ miễn phí để trích xuất mã và thay thế URL. Hỗ trợ xử lý URL Google Play và các dịch vụ khác một cách nhanh chóng và dễ dàng.">
+    <meta name="keywords" content="URL extractor, URL replacer, Google Play URL, công cụ miễn phí, trích xuất URL">
+    <meta name="author" content="URL Extractor Tool">
+    
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5528456876148332"
+     crossorigin="anonymous"></script>
+    
+    <!-- Preconnect to ad servers for better performance -->
+    <link rel="preconnect" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .step {
+            margin-bottom: 25px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #fafafa;
+        }
+        
+        .step h3 {
+            color: #007bff;
+            margin-top: 0;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #555;
+        }
+        
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+            font-family: monospace;
+            box-sizing: border-box;
+            white-space: nowrap;
+            overflow-x: auto;
+        }
+        
+        textarea {
+            height: 120px;
+            resize: vertical;
+            white-space: pre;
+        }
+        
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        
+        button:hover {
+            background-color: #0056b3;
+        }
+        
+        button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+        
+        .result {
+            margin-top: 15px;
+            padding: 15px;
+            background-color: #e8f5e8;
+            border: 1px solid #4caf50;
+            border-radius: 5px;
+            word-break: break-all;
+        }
+        
+        .error {
+            background-color: #ffeaea;
+            border-color: #f44336;
+            color: #d32f2f;
+        }
+        
+        .extracted-code {
+            background-color: #fff3cd;
+            border: 1px solid #ffc107;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: monospace;
+            margin-top: 10px;
+        }
+        
+        .final-url {
+            background-color: #d4edda;
+            border: 1px solid #28a745;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 15px;
+        }
+        
+        .copy-btn {
+            background-color: #28a745;
+            font-size: 14px;
+            padding: 8px 16px;
+            margin-left: 10px;
+        }
+        
+        .copy-btn:hover {
+            background-color: #218838;
+        }
+        
+        /* Ad container styles */
+        .ad-container {
+            margin: 20px 0;
+            text-align: center;
+            padding: 10px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            border: 1px solid #dee2e6;
+        }
+        
+        .ad-label {
+            font-size: 12px;
+            color: #6c757d;
+            margin-bottom: 10px;
+        }
+        
+        /* Footer styles */
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            color: #6c757d;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header Ad -->
+        <div class="ad-container">
+            <div class="ad-label">Quảng cáo</div>
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-5528456876148332"
+                 data-ad-slot="1234567890"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+        </div>
+        
+        <h1>🔗 URL Extractor và Replacer</h1>
+        
+        <!-- Bước 1: Trích xuất mã -->
+        <div class="step">
+            <h3>📋 Bước 1: Nhập URL để trích xuất mã</h3>
+            <label for="sourceUrl">Nhập URL nguồn:</label>
+            <textarea id="sourceUrl" placeholder="Dán URL nguồn vào đây..."></textarea>
+            <button onclick="extractCode()">🔍 Trích xuất mã</button>
+            <div id="extractResult"></div>
+        </div>
+        
+        <!-- Middle Ad -->
+        <div class="ad-container">
+            <div class="ad-label">Quảng cáo</div>
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-5528456876148332"
+                 data-ad-slot="1234567891"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+        </div>
+        
+        <!-- Bước 2: Nhập URL 30TB AI Ultra -->
+        <div class="step">
+            <h3>🔄 Bước 2: Nhập URL 30TB AI Ultra</h3>
+            <label for="targetUrl">Nhập URL 30TB AI Ultra:</label>
+            <textarea id="targetUrl" placeholder="Dán URL 30TB AI Ultra vào đây..."></textarea>
+            <button onclick="processUrls()" id="processBtn" disabled>⚡ Thực hiện thay thế</button>
+            <div id="processResult"></div>
+        </div>
+        
+        <!-- Bottom Ad -->
+        <div class="ad-container">
+            <div class="ad-label">Quảng cáo</div>
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-5528456876148332"
+                 data-ad-slot="1234567892"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+        </div>
+        
+        <!-- Footer -->
+        <div class="footer">
+            <p>© 2024 URL Extractor Tool. Công cụ miễn phí để xử lý URL.</p>
+            <p>Sử dụng một cách có trách nhiệm và tuân thủ các điều khoản dịch vụ.</p>
+        </div>
+    </div>
+
+    <script>
+        let extractedCode = '';
+        
+        // Initialize ads after page load
+        window.addEventListener('load', function() {
+            (adsbygoogle = window.adsbygoogle || []).push({});
+            (adsbygoogle = window.adsbygoogle || []).push({});
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        });
+        
+        function extractCode() {
+            const sourceUrl = document.getElementById('sourceUrl').value.trim();
+            const resultDiv = document.getElementById('extractResult');
+            
+            if (!sourceUrl) {
+                resultDiv.innerHTML = '<div class="result error">⚠️ Vui lòng nhập URL nguồn!</div>';
+                return;
+            }
+            
+            try {
+                // Tìm đoạn mã trong URL
+                const pattern = /%22([a-zA-Z0-9]+)%22%5D%5D/g;
+                const matches = [...sourceUrl.matchAll(pattern)];
+                
+                // Tìm match cuối cùng (thường là mã cần thiết)
+                if (matches.length > 0) {
+                    extractedCode = matches[matches.length - 1][1];
+                    
+                    resultDiv.innerHTML = `
+                        <div class="result">
+                            ✅ Đã trích xuất thành công!
+                            <div class="extracted-code">
+                                <strong>Mã được trích xuất:</strong> ${extractedCode}
+                            </div>
+                        </div>
+                    `;
+                    
+                    // Enable nút xử lý
+                    document.getElementById('processBtn').disabled = false;
+                } else {
+                    resultDiv.innerHTML = '<div class="result error">❌ Không tìm thấy mã trong URL! Vui lòng kiểm tra lại URL.</div>';
+                    extractedCode = '';
+                    document.getElementById('processBtn').disabled = true;
+                }
+            } catch (error) {
+                resultDiv.innerHTML = '<div class="result error">❌ Có lỗi xảy ra khi xử lý URL!</div>';
+                extractedCode = '';
+                document.getElementById('processBtn').disabled = true;
+            }
+        }
+        
+        function processUrls() {
+            const sourceUrl = document.getElementById('sourceUrl').value.trim();
+            const targetUrl = document.getElementById('targetUrl').value.trim();
+            const resultDiv = document.getElementById('processResult');
+            
+            if (!targetUrl) {
+                resultDiv.innerHTML = '<div class="result error">⚠️ Vui lòng nhập URL 30TB AI Ultra!</div>';
+                return;
+            }
+            
+            // Nếu chưa có mã được trích xuất và có URL nguồn, tự động trích xuất
+            if (!extractedCode && sourceUrl) {
+                try {
+                    const pattern = /%22([a-zA-Z0-9]+)%22%5D%5D/g;
+                    const matches = [...sourceUrl.matchAll(pattern)];
+                    
+                    if (matches.length > 0) {
+                        extractedCode = matches[matches.length - 1][1];
+                        // Cập nhật hiển thị kết quả trích xuất
+                        document.getElementById('extractResult').innerHTML = `
+                            <div class="result">
+                                ✅ Đã trích xuất thành công!
+                                <div class="extracted-code">
+                                    <strong>Mã được trích xuất:</strong> ${extractedCode}
+                                </div>
+                            </div>
+                        `;
+                    }
+                } catch (error) {
+                    // Nếu lỗi, tiếp tục xử lý với thông báo
+                }
+            }
+            
+            if (!extractedCode) {
+                resultDiv.innerHTML = '<div class="result error">⚠️ Vui lòng nhập URL nguồn hợp lệ để trích xuất mã!</div>';
+                return;
+            }
+            
+            try {
+                // Chuỗi cần thay thế
+                const searchString = '%3D%3D%22%5D%2Cnull%2Cnull%2Cnull%2Cnull%2Cnull%2Cnull%2Cnull%2Cnull%2C%5B%5B%5B%5B%22subs%3Acom';
+                
+                // Chuỗi thay thế (với mã đã trích xuất)
+                const replaceString = `%3D%3D%22%5D%2Cnull%2Cnull%2Cnull%2C%5Bnull%2C0%2Cnull%2Cnull%2Cnull%2C%5B%22${extractedCode}%22%5D%5D%2Cnull%2Cnull%2Cnull%2Cnull%2C%5B%5B%5B%5B%22subs%3Acom`;
+                
+                // Thực hiện thay thế
+                const newUrl = targetUrl.replace(searchString, replaceString);
+                
+                if (newUrl === targetUrl) {
+                    resultDiv.innerHTML = '<div class="result error">⚠️ Không tìm thấy đoạn cần thay thế trong URL!</div>';
+                } else {
+                    resultDiv.innerHTML = `
+                        <div class="result">
+                            ✅ Đã thay thế thành công!
+                            <div class="final-url">
+                                <strong>🔗 URL sau khi thay thế:</strong>
+                                <br><br>
+                                <div style="word-break: break-all; font-family: monospace; background: white; padding: 10px; border-radius: 3px; border: 1px solid #ccc;">
+                                    ${newUrl}
+                                </div>
+                                <button class="copy-btn" onclick="copyToClipboard('${newUrl.replace(/'/g, "\\'")}')">📋 Copy URL</button>
+                            </div>
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                resultDiv.innerHTML = '<div class="result error">❌ Có lỗi xảy ra khi thay thế URL!</div>';
+            }
+        }
+        
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(function() {
+                alert('✅ Đã copy URL vào clipboard!');
+            }, function(err) {
+                console.error('Không thể copy: ', err);
+                // Fallback method
+                const textArea = document.createElement("textarea");
+                textArea.value = text;
+                document.body.appendChild(textArea);
+                textArea.focus();
+                textArea.select();
+                try {
+                    document.execCommand('copy');
+                    alert('✅ Đã copy URL vào clipboard!');
+                } catch (err) {
+                    alert('❌ Không thể copy URL. Vui lòng copy thủ công.');
+                }
+                document.body.removeChild(textArea);
+            });
+        }
+        
+        // Auto-resize textareas and enable process button when both URLs are filled
+        document.querySelectorAll('textarea').forEach(textarea => {
+            textarea.addEventListener('input', function() {
+                this.style.height = 'auto';
+                this.style.height = Math.max(120, this.scrollHeight) + 'px';
+                
+                // Kiểm tra nếu có đủ cả 2 URL thì enable nút xử lý
+                const sourceUrl = document.getElementById('sourceUrl').value.trim();
+                const targetUrl = document.getElementById('targetUrl').value.trim();
+                const processBtn = document.getElementById('processBtn');
+                
+                if (sourceUrl && targetUrl) {
+                    processBtn.disabled = false;
+                } else {
+                    processBtn.disabled = true;
+                }
+            });
+        });
+    </script>
+</body>
+</html> 
